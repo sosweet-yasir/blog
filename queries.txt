@@ -1,0 +1,14 @@
+1. select nth maxmium value, change offset and get values, now get 3rd maximum value...
+SELECT title FROM comments ORDER BY title LIMIT 1 OFFSET 2
+
+2. SQL to find the number of distinct values in a column
+SELECT COUNT(DISTINCT column_name) AS some_alias FROM table_name
+
+3. SQL to find the number of distinct values in a column with column name.
+select columnName, count(columnName) as CountOf from tableName group by columnName
+
+4. SQL INNER JOIN Keyword
+SELECT column_name(s)
+FROM table1
+INNER JOIN table2
+ON table1.column_name=table2.column_name;
