@@ -14,3 +14,11 @@ INNER JOIN table2
 ON table1.column_name=table2.column_name;
 SQL update query in echo format php
 $sql = "Update wp_social_feeds SET status='".$_POST["status"]."'WHERE id='".$_POST["id"]."'";
+
+query get child record with parent
+SELECT *
+FROM wp_imh_meal_calendar
+INNER JOIN post_repeat
+ON wp_imh_meal_calendar.repeat_id=post_repeat.id
+WHERE 
+wp_imh_meal_calendar.id=44
