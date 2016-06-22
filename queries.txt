@@ -20,5 +20,11 @@ SELECT *
 FROM wp_imh_meal_calendar
 INNER JOIN post_repeat
 ON wp_imh_meal_calendar.repeat_id=post_repeat.id
-WHERE 
-wp_imh_meal_calendar.id=44
+WHERE wp_imh_meal_calendar.id=44
+
+another important join query in which get  parent and child record with some additional fields
+$query = "SELECT *, COUNT(*) AS total, MAX(start_date) AS last_start_date, MAX(end_date) AS last_end_date
+ 				FROM wp_imh_meal_calendar
+				INNER JOIN post_repeat ON post_repeat.id = wp_imh_meal_calendar.repeat_id
+				WHERE post_repeat.ends = '1'
+				GROUP BY post_repeat.id";
