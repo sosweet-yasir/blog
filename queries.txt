@@ -28,3 +28,6 @@ $query = "SELECT *, COUNT(*) AS total, MAX(start_date) AS last_start_date, MAX(e
 				INNER JOIN post_repeat ON post_repeat.id = wp_imh_meal_calendar.repeat_id
 				WHERE post_repeat.ends = '1'
 				GROUP BY post_repeat.id";
+
+only compare date in datetime field
+SELECT * FROM `wp_imh_meal_calendar` WHERE CAST(`start_date` AS DATE) = '2016-06-30'
