@@ -31,3 +31,11 @@ $query = "SELECT *, COUNT(*) AS total, MAX(start_date) AS last_start_date, MAX(e
 
 only compare date in datetime field
 SELECT * FROM `wp_imh_meal_calendar` WHERE CAST(`start_date` AS DATE) = '2016-06-30'
+
+git command for clone any branch
+git clone https://gitlab.com/Techliance/WeSee.git --branch yasirwork --single-branch
+
+Update only time in date time field
+UPDATE wp_imh_meal_calendar SET 
+start_date = concat_ws(' ',date(start_date), '17:00:00')
+WHERE 1 ORDER BY id DESC LIMIT 3
