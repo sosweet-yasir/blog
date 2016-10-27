@@ -39,3 +39,9 @@ Update only time in date time field
 UPDATE wp_imh_meal_calendar SET 
 start_date = concat_ws(' ',date(start_date), '17:00:00')
 WHERE 1 ORDER BY id DESC LIMIT 3
+
+Qurery for get substring between two characters sql
+SELECT post_type, post_link,SUBSTRING(`post_link`, LOCATE('1015', post_link), (LOCATE('637', post_link)+ CHAR_LENGTH(637))-LOCATE('1015', post_link)) from `wp_social_feeds` where post_type = 'facebook'
+
+Qurery for get substring after characters sql use -1 to 1 for before character
+select SUBSTRING_INDEX(post_link, '1015', -1) from `wp_social_feeds` where post_type = 'facebook'
