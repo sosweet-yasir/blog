@@ -45,3 +45,11 @@ SELECT post_type, post_link,SUBSTRING(`post_link`, LOCATE('1015', post_link), (L
 
 Qurery for get substring after characters sql use -1 to 1 for before character
 select SUBSTRING_INDEX(post_link, '1015', -1) from `wp_social_feeds` where post_type = 'facebook'
+
+delete all duplicate rows except for one in mysql
+1) If you want to keep the row with the lowest id value:
+
+DELETE n1 FROM names n1, names n2 WHERE n1.id > n2.id AND n1.name = n2.name
+2) If you want to keep the row with the highest id value:
+
+DELETE n1 FROM `wp_social_feeds` n1, `wp_social_feeds` n2 WHERE n1.id < n2.id AND n1.post_link = n2.post_link
