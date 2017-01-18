@@ -53,3 +53,10 @@ DELETE n1 FROM names n1, names n2 WHERE n1.id > n2.id AND n1.name = n2.name
 2) If you want to keep the row with the highest id value:
 
 DELETE n1 FROM `wp_social_feeds` n1, `wp_social_feeds` n2 WHERE n1.id < n2.id AND n1.post_link = n2.post_link
+Quiery for null lat long after comparison between two table
+update `schools` set `lat` = null, `long` = null where code in(
+select code from (
+SELECT s.code, FLOOR(s.`lat`) as s_lat, FLOOR(s.`long`) as s_long, Floor(c.lat) as c_lat, Floor(c.long) as c_long  
+from `schools` as s 
+join `communities` as c where s.community_code = c.code) as t
+where (s_lat != c_lat or s_long != c_long))
