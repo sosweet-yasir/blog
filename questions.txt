@@ -36,7 +36,7 @@ PSR stands for PHP Standard Recommendation. PSR is a specification for defining 
 
 -------------------------------------------------------------------------------------------------------------
 
-What’s the difference between using mysql_ functions and mysqli?
+Whatâ€™s the difference between using mysql_ functions and mysqli?
 Ans
 
 MySQLi is the OOP version of MySQL extension. In the end, MySQLi and MySQL accomplish the same thing: they are extension for interacting with MySQL from PHP. 
@@ -272,7 +272,7 @@ These setters and getters and are used when we want to get or set private or pro
 These methods will automatically be called when we get or set private or protected attribute of class.
 
 3) __isset()
-check the presence of a property that isn’t publicly accessible, you can use the __isset() magic method to respond:
+check the presence of a property that isnâ€™t publicly accessible, you can use the __isset() magic method to respond:
 public function  __isset($property)
 {
   return isset($this->$property);
@@ -300,7 +300,7 @@ $sheep1->name = "Dolly";
 echo $sheep1->name; // Dolly
 echo $sheep2->name; // Dolly
 
-This is because when you copy an object in PHP, it is “passed as a reference”, meaning, it maintains a link to the original object.
+This is because when you copy an object in PHP, it is â€œpassed as a referenceâ€, meaning, it maintains a link to the original object.
 
 In order to create a clean copy of the object, we must use the clone keyword;
 
@@ -353,7 +353,7 @@ Ans
 
 Abstract Class
 
-For abstract class a method must be declared as abstract. Abstract methods doesn’t have any implementation.	
+For abstract class a method must be declared as abstract. Abstract methods doesnâ€™t have any implementation.	
 The Abstract methods can declare with Access modifiers like public, internal, protected.
 When implementing in subclass these methods must be defined with the same (or a less restricted) visibility.	
 Abstract class can contain variables and concrete methods.	
@@ -408,3 +408,79 @@ What is Inline function?
 -------------------------------------------------------------------------------------------------------------
 
 
+OK till the invitation comes to skype let me ask  some here..
+
+
+what will be the out of following code
+
+$a = "ab$$c";
+this is simple assignment in php
+nothing will output here "ab$$c" this is a string which will assign to variable
+$a.
+
+$c = "A"; $b = "asdf$$c";Â echo $b
+this is output
+asdf$$c
+
+ok 
+
+what is difference in the require_once and require?
+require_once is used to require once time but require is identical to include
+so require_once and require are same functions ??
+require_once and require are same functions except php will check if file is already
+been included and if not include require it again. mean if you want to include file
+and ir is not found then include function gives warning and execute remaning code.
+
+what is "final" class and "abstract" class?
+final class prevent chlild class to overriding method. and it can not extended.
+abstract class is having one or more abstract methods and it can not instaniated.
+abstract class is used to implement behaviour. 
+
+$a = array('1','2','3','a','b','5');
+print the sum of all the digits from the above array?
+
+$sum = 0;
+foreach($a as $n){
+  if(is_int($n)){
+    $sum += $n;
+  }
+}
+
+echo $sum;
+
+How to vlidate a valid email addresss?
+
+in php? yes
+
+we can use preg_match with regular experations or we can use filter_var()
+
+What is difference between === and == operator in php?
+=== is use to check equility with data type. while == only use for equility.
+
+can you write 2 classes and inheri them from Class A to Class B
+this website is live php code writing and tesing
+sir if you asking for multiple inheritance in php then it is not possible in order
+to achive this we can use traits in php.
+
+
+ok, I have afile in the remote file on another server
+Can yocu download thiat file and display the data in that file
+but becare full the remote file may have php code,
+so how can you be save that php is not executed.
+http://idlsol.com/test.txt
+
+we can use get_file_content() function 
+this is executing the code, so how you will be safe and display the file data instead of executing
+
+$data = array('first_name' => 'Ali' , 'last_name' => 'Ahsan');
+//write a code to post this data to remote url
+
+//ok one last quetsions how to 
+$a = array(1);
+$b = 13;  //its not array
+$c['abc'] = 134;
+//how to merge all these arrays into one array
+
+$data = array_merge($a,(array)$b,$c);
+
+print_r($data);
