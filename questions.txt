@@ -1,0 +1,410 @@
+What are SQL Injections, how do you prevent them and what are the best practices? NOT
+Ans:
+
+SQL injection is a technique where malicious users can inject SQL commands into an SQL statement, via web page input.
+
+Injected SQL commands can alter SQL statement and compromise the security of a web application.
+
+userId is the input get from view 
+
+SELECT Name, Password FROM Users WHERE id = userId 
+
+if we write in input field "105 or 1=1" then or sql query will be following
+
+SELECT Name, Password FROM Users WHERE id= 105 or 1=1
+
+as 1=1 will return true so we get all user from database
+
+-------------------------------------------------------------------------------------------------------------
+
+
+Why would you use === instead of ==?
+Ans
+
+== is used to simply compare the value of two variables. if the value of both variables is true then it will return true
+While === perform two things it checks the value of variables whether they are equal or not 
+and also it checks the typre of both variables(operands). If values and type of both operands are equal then it will return true.
+
+-------------------------------------------------------------------------------------------------------------
+
+What are PSRs? Choose 1 and briefly describe it. NOT
+Ans
+
+PSR stands for PHP Standard Recommendation. PSR is a specification for defining a coding standard for PHP.
+
+
+
+-------------------------------------------------------------------------------------------------------------
+
+What’s the difference between using mysql_ functions and mysqli?
+Ans
+
+MySQLi is the OOP version of MySQL extension. In the end, MySQLi and MySQL accomplish the same thing: they are extension for interacting with MySQL from PHP. 
+
+A lot of people still use the original MySQL extension instead of the new MySQLi extension because MySQLi requires MySQL 4.1.13+ and PHP 5.0.7+ .
+
+MySQLi supports some things that the old MySQL extension doesn't. Things like 
+
+1) Object-oriented interface
+2) Support for Prepared Statements
+Ans
+
+A prepared statement is a feature used to execute the same (or similar) SQL statements repeatedly with high efficiency.
+
+Prepared statements basically work like this:
+
+Prepare: An SQL statement template is created and sent to the database. Certain values are left unspecified, called parameters (labeled "?"). 
+Example: INSERT INTO MyGuests VALUES(?, ?, ?)
+The database parses, compiles, and performs query optimization on the SQL statement template, and stores the result without executing it
+Execute: At a later time, the application binds the values to the parameters, and the database executes the statement. 
+The application may execute the statement as many times as it wants with different values
+
+Compared to executing SQL statements directly, prepared statements have two main advantages:
+
+Prepared statements reduces parsing time as the preparation on the query is done only once (although the statement is executed multiple times)
+Bound parameters minimize bandwidth to the server as you need send only the parameters each time, and not the whole query
+Prepared statements are very useful against SQL injections, because parameter values, which are transmitted later using a different protocol, 
+need not be correctly escaped. If the original statement template is not derived from external input, SQL injection cannot occur.
+
+// prepare and bind
+
+$stmt = $conn->prepare("INSERT INTO MyGuests (firstname, lastname, email) VALUES (?, ?, ?)");
+$stmt->bind_param("sss", $firstname, $lastname, $email);
+
+// set parameters and execute
+$firstname = "John";
+$lastname = "Doe";
+$email = "john@example.com";
+$stmt->execute();
+
+$firstname = "Mary";
+$lastname = "Moe";
+$email = "mary@example.com";
+$stmt->execute();
+
+3) Support for Multiple Statements
+4) Support for Transactions
+5) Enhanced debugging capabilities
+6) Embedded server support
+
+-------------------------------------------------------------------------------------------------------------
+
+What is  PDO?
+Ans
+
+PDO (PHP Data Objects) is a general database abstraction layer with support for MySQL among many other databases.
+It provides prepared statements, and significant flexibility in how data is returned.
+
+
+
+-------------------------------------------------------------------------------------------------------------
+
+Describe how multilevel and multiple inheritance works with PHP.
+Ans
+
+In php multilevel inheritance is possible but multiple inheritance is not possible.
+In simplified terms in php child class can not inherit more than one parent class.
+But hierarchical inheritance is possible in php. Hierarchical means Parent inherit property of grand parent class.
+Grand child inherit property of parent class.So in multilevel inheritance child can get some property of from grand parent class also.
+
+-------------------------------------------------------------------------------------------------------------
+
+4.7. What is Encapsulation (or Information Hiding)?
+Ans
+
+Wrapping up data member and method together into a single unit (i.e. Class) is called Encapsulation.
+Encapsulation is like enclosing in a capsule. That is enclosing the related operations and data related to an object into that object.
+Encapsulation means hiding the internal details of an object, i.e. how an object does something.
+Encapsulation prevents clients from seeing its inside view, where the behaviour of the abstraction is implemented.
+Example
+
+Hide the data for security such as making the variables as private, and expose the property to access the private data which would be public.
+So, when you access the property you can validate the data and set it.
+
+Example:
+<?php
+class YourMarks
+{
+private $mark;
+public Marks
+{
+get { return $mark; }
+set { if ($mark > 0) $mark = 10; else $mark = 0; }
+}
+}
+?>
+
+-------------------------------------------------------------------------------------------------------------
+Difference between encapsulation and abstractio
+Ans
+
+Encapsulation is a concept of wrapping up or binding up related data members and methods in a single module known as encapsulation
+
+And hiding the essential internal property of that module known as data abstraction.
+
+Abstraction is used for hiding the unwanted data and giving relevant data. Abstraction lets you focus on what the object does instead of how it does it
+For Example:-
+Outer Look of a Mobile Phone, like it has a display screen and keypad buttons to dial a number.
+
+Encapsulation
+
+1. Encapsulation solves the problem in the implementation level.
+2. Encapsulation means hiding the code and data into a single unit to protect the data from outside world.
+3. Encapsulation means hiding the internal details or mechanics of how an object does something.
+4. Encapsulation- Inner layout, used in terms of implementation.
+For Example:- Inner Implementation detail of a Mobile Phone, how keypad button and Display Screen are connect with each other using circuits.
+
+-------------------------------------------------------------------------------------------------------------
+
+What is Association, composition and aggregation?
+Ans
+
+For two objects, Foo and Bar the relationships can be defined
+
+Association - I have a relationship with an object. Foo uses Bar
+
+public class Foo { 
+void Baz(Bar bar) {
+}  };
+
+Composition - I own an object and I am responsible for its lifetime, when Foo dies, so does Bar
+
+public class Foo {
+private Bar bar = new Bar();  }
+
+Aggregation - I have an object which I've borrowed from someone else. When Foo dies, Bar may live on.
+
+public class Foo { 
+private Bar bar; 
+Foo(Bar bar) { 
+   this.bar = bar; 
+} }
+
+
+-------------------------------------------------------------------------------------------------------------
+
+What is Abstraction and Generalization?
+Ans
+
+Abstraction is given above and generalization is given below
+
+When we create a base/super class from two or more similar type of objects by extracting their all  common characteristics(attributes and behavior)
+and combine them, then this process is known as Generalization.
+Example:
+Consider there exists a class named Person.
+A student is a person. A faculty is a person. Therefore here the relationship between student and person, similarly faculty and person is generalization.
+
+-------------------------------------------------------------------------------------------------------------
+
+What is Inheritance?
+
+-------------------------------------------------------------------------------------------------------------
+
+What is Polymorphism?
+Ans 
+
+Polymorphism describes a pattern in object oriented programming in 
+which classes have different functionality while sharing a common interface (methods).An integral part of polymorphism is the common interface.
+We define interface which have declaration of set of methods. Then different classes implement interface.
+The class implementing interface must provide implementations of all methods of interface. Now supposer we have interface having method declaration.
+Suppose that methods is calcArea. Now there are three classes that implement interface. Now it is necessary for classes that implement interface must 
+provide implamentation of method of interface. Now three classes (rectangle, triangle, cricle) have calcArea method with different implementation. AS 
+these three classes have different formula for area calculation. This is polymorphism.
+
+-------------------------------------------------------------------------------------------------------------
+
+What is Scope Resolution Operator?
+Ans
+
+The Scope Resolution Operator (also called Paamayim Nekudotayim) or in simpler terms, the double colon,
+is a token that allows access to static, constant, and overridden properties or methods of a class.
+
+Example:
+<?php
+class MyClass {
+    const CONST_VALUE = 'A constant value';
+}
+
+$classname = 'MyClass';
+echo $classname::CONST_VALUE; // As of PHP 5.3.0
+
+echo MyClass::CONST_VALUE;
+?>
+
+-------------------------------------------------------------------------------------------------------------
+
+Difference between :: and -> in php?
+Ans
+
+example,
+
+class Organisation {
+function getStrength() {
+return $strength;
+} 
+}//end class
+$strength = Organisation::getStrength();
+This operator is used when no object has been created till the class functions or variables are accessed from outside the scope of the class.
+Otherwise, it can be called by using class objects like as shown below.
+
+class Organisation {
+function getStrength() {
+return $strength;
+} 
+}//class ends
+$objOrganisation = new Organisation();
+$strength = $objOrganisation->getStrength();
+
+-------------------------------------------------------------------------------------------------------------
+
+
+magic methods
+Ans
+
+Magic methods start with __.These are Magic Methods that allow you to react to certain events when using these particular objects.
+This means when certain things happen to your object, you can define how it should react in that instance.
+Following are some magic methods
+1) __construct() and __destruct()
+When an object is created or destroyed. Then these methods will automaticaly be called. We don't have to call them explicitly.
+
+2) __get()  and __set()
+These setters and getters and are used when we want to get or set private or protected attribute of class.
+These methods will automatically be called when we get or set private or protected attribute of class.
+
+3) __isset()
+check the presence of a property that isn’t publicly accessible, you can use the __isset() magic method to respond:
+public function  __isset($property)
+{
+  return isset($this->$property);
+}
+ 
+isset($tweet->text); // true
+
+text is protected attribute of class
+As you can see above, the __isset() method will catch the call to the inaccessible(private or protected) property and accept it as an argument.
+You can then run the isset() function from inside the object to return the correct boolean value.
+
+4) __toString() 
+The __toString() method allows you to return the object as a string 
+
+5) __Clone()
+When you make a copy of an object in PHP, it is still linked to the original object. 
+This means if you make a change to the original object, your copied object will also be changed:
+
+$sheep1 = new stdClass;
+$sheep2 = $sheep1;
+ 
+$sheep2->name = "Polly";
+$sheep1->name = "Dolly";
+ 
+echo $sheep1->name; // Dolly
+echo $sheep2->name; // Dolly
+
+This is because when you copy an object in PHP, it is “passed as a reference”, meaning, it maintains a link to the original object.
+
+In order to create a clean copy of the object, we must use the clone keyword;
+
+$sheep1 = new stdClass;
+$sheep2 = clone $sheep1;
+ 
+$sheep2->name = "Polly";
+$sheep1->name = "Dolly";
+ 
+echo $sheep1->name; // Dolly
+echo $sheep2->name; // Polly
+
+-------------------------------------------------------------------------------------------------------------
+
+What is a virtual function?
+Ans
+
+In PHP all none private functions are virtual so there is no need to explicitly declare them as virtual.
+
+
+-------------------------------------------------------------------------------------------------------------
+What is a pure virtual function?
+Ans
+
+A pure virtual function or pure virtual method is a virtual function that is required to be implemented by a derived class if that class is not abstract.
+Classes containing pure virtual methods are termed "abstract" and they cannot be instantiated directly.
+
+-------------------------------------------------------------------------------------------------------------
+
+What is super keyword?
+
+-------------------------------------------------------------------------------------------------------------
+
+ Difference between overloading and overriding?
+
+-------------------------------------------------------------------------------------------------------------
+
+What are access modifiers?
+
+Access modifiers determine the scope of the method or variables that can be accessed from other various objects or classes.
+ There are 5 types of access modifiers , and they are as follows:.
+
+Private.
+Protected.
+Public.
+
+-------------------------------------------------------------------------------------------------------------
+Difference between abstract class and interface
+Ans
+
+Abstract Class
+
+For abstract class a method must be declared as abstract. Abstract methods doesn’t have any implementation.	
+The Abstract methods can declare with Access modifiers like public, internal, protected.
+When implementing in subclass these methods must be defined with the same (or a less restricted) visibility.	
+Abstract class can contain variables and concrete methods.	
+A class can Inherit only one Abstract class and Multiple inheritance is not possible for Abstract class.
+
+Interface:
+
+For interface all the methods by default are abstract methods only. So one cannot declare variables or concrete methods in interfaces.
+All methods declared in an interface must be public.
+Interfaces cannot contain variables and concrete methods except constants.
+A class can implement many interfaces and Multiple interface inheritance is possible.
+-------------------------------------------------------------------------------------------------------------
+ What is Method Overloading?
+
+-------------------------------------------------------------------------------------------------------------
+
+What is Operator Overloading?
+
+-------------------------------------------------------------------------------------------------------------
+
+ What is Method Overriding?
+
+-------------------------------------------------------------------------------------------------------------
+
+What is Gang of Four (GoF) Design Patterns? facade, factory
+
+-------------------------------------------------------------------------------------------------------------
+
+
+ What is sealed modifiers? NOT
+
+-------------------------------------------------------------------------------------------------------------
+
+What is a copy constructor? NOT
+
+
+-------------------------------------------------------------------------------------------------------------
+
+What does the keyword virtual represented in the method definition?
+
+-------------------------------------------------------------------------------------------------------------
+
+
+ What are manipulators? NOT
+
+-------------------------------------------------------------------------------------------------------------
+
+What is Inline function?
+
+-------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------
+
+
