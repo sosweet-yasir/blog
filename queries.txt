@@ -60,3 +60,6 @@ SELECT s.code, FLOOR(s.`lat`) as s_lat, FLOOR(s.`long`) as s_long, Floor(c.lat) 
 from `schools` as s 
 join `communities` as c where s.community_code = c.code) as t
 where (s_lat != c_lat or s_long != c_long))
+
+a useful command for install elixer laravel 
+npm rebuild node-sass
