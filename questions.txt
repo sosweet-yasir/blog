@@ -484,3 +484,9 @@ $c['abc'] = 134;
 $data = array_merge($a,(array)$b,$c);
 
 print_r($data);
+
+
+vivla technologies interview question
+how to implement multiple threading in laravel?
+how many types of session in laravel?
+ans:"file", "cookie", "database", "apc", "memcached", "redis", "array".
