@@ -63,3 +63,21 @@ where (s_lat != c_lat or s_long != c_long))
 
 a useful command for install elixer laravel 
 npm rebuild node-sass
+
+// union with paginate in laravel
+$ns_itms = NsItem::select('id', 'sku_code', DB::raw('"Boss" as table_name'), 'created_at', 'updated_at')
+                    ->when($sku_code, function ($q) use ($sku_code){
+                        $q->where('sku_code', $sku_code);
+                    });
+        $product_templats =  DB::table('product_template')
+            ->join('style', 'product_template.style_id', '=', 'style.id')
+            ->join('size', 'product_template.size_id', '=', 'size.id')
+            ->select('product_template.id', DB::raw('CONCAT(style.code, "-", size.code) as sku_code, "Netsuite" as table_name '), 'product_template.created_at', 'product_template.updated_at')
+            ->when($sku_code, function ($q) use ($sku_code){
+                $q->where(DB::raw('CONCAT(style.code, "-", size.code)'), $sku_code);
+            })
+            ->union($ns_itms);
+
+        $querySql = $product_templats->toSql();
+        $query = DB::table(DB::raw("($querySql order by sku_code desc) as a"))->mergeBindings($product_templats);
+        $exceptions = $query->paginate(10);
