@@ -1,4 +1,2 @@
 change line 100 of ContentListingFormatter.php in League\Flysystem\Util
 return strtolower(Util::dirname($entry['path'])) === strtolower($this->directory);
-
-Process start from plan images with print id = 248517
