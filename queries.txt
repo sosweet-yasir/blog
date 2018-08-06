@@ -81,3 +81,7 @@ $ns_itms = NsItem::select('id', 'sku_code', DB::raw('"Boss" as table_name'), 'cr
         $querySql = $product_templats->toSql();
         $query = DB::table(DB::raw("($querySql order by sku_code desc) as a"))->mergeBindings($product_templats);
         $exceptions = $query->paginate(10);
+	
+	
+* Regular expression for remove id from export file as sql
+(?<=\().*?(?=\s)
