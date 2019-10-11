@@ -2,3 +2,4 @@ elxer issues in npm
 npm install -g npm@3.6.0
 npm install clone
 npm install [module name] 
+npm install --global --production windows-build-tools
